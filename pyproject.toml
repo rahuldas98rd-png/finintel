@@ -1,0 +1,22 @@
+[project]
+name = "finintel"
+version = "0.1.0"
+description = "Agentic RAG system for analyst-grade question answering over SEC filings"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "lxml>=6.1.0",
+    "pydantic>=2.13.4",
+    "python-dotenv>=1.2.2",
+    "requests>=2.33.1",
+    "sec-edgar-downloader>=5.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.2.0",
+    "jupyter>=1.1.1",
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]

@@ -25,3 +25,5 @@ data/processed/
 # OS
 .DS_Store
 Thumbs.db
+
+project_plan.md

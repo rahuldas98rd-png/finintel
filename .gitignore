@@ -27,3 +27,11 @@ data/processed/
 Thumbs.db
 
 project_plan.md
+data/chunks.jsonl
+data/processed/
+
+qdrant_storage/
+
+data/embeddings.npy
+
+evals/results/*.json

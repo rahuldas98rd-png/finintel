@@ -1,0 +1,10 @@
+{"id": "q01", "question": "What does Apple identify as risks related to dependence on third-party suppliers and manufacturing?", "ticker": "AAPL", "section_hint": "risk_factors", "must_mention": ["suppliers", "manufacturing", "single source", "third party"]}
+{"id": "q02", "question": "What was the primary driver of Apple's Services revenue in their most recent fiscal year?", "ticker": "AAPL", "section_hint": "mda", "must_mention": ["services", "subscription", "advertising"]}
+{"id": "q03", "question": "How does Google describe risks from artificial intelligence systems they develop or deploy?", "ticker": "GOOGL", "section_hint": "risk_factors", "must_mention": ["AI", "regulatory", "harm", "liability"]}
+{"id": "q04", "question": "What regulatory and capital-requirement risks does JPMorgan emphasize?", "ticker": "JPM", "section_hint": "risk_factors", "must_mention": ["regulatory", "capital", "Basel"]}
+{"id": "q05", "question": "How is Microsoft's Intelligent Cloud segment performing in the most recent fiscal year?", "ticker": "MSFT", "section_hint": "mda", "must_mention": ["Azure", "cloud", "growth", "Intelligent Cloud"]}
+{"id": "q06", "question": "What does Tesla disclose about risks of autonomous and Full Self-Driving features?", "ticker": "TSLA", "section_hint": "risk_factors", "must_mention": ["autonomous", "FSD", "self-driving", "safety"]}
+{"id": "q07", "question": "How has Tesla's discussion of manufacturing scale risks evolved between their 2023 and 2026 10-K filings?", "ticker": "TSLA", "must_mention": ["manufacturing", "production", "scale", "capacity"]}
+{"id": "q08", "question": "What is Apple's current stock price?", "ticker": "AAPL", "must_mention": [], "expected_refusal": true}
+{"id": "q09", "question": "How do Google and Microsoft each frame competitive risks in their cloud businesses?", "must_mention": ["cloud", "competition"]}
+{"id": "q10", "question": "What did Microsoft report regarding commercial cloud revenue growth in the most recent fiscal year?", "ticker": "MSFT", "section_hint": "mda", "must_mention": ["commercial cloud", "growth"]}

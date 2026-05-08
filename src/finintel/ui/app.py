@@ -3,7 +3,7 @@
 Three pipeline modes selectable from the sidebar:
   - Single-shot RAG (default, fastest)
   - Single-shot + cross-encoder reranker (slower, no measurable gain on this corpus)
-  - Agent (multi-step planner → retriever → synthesizer; best for multi-entity queries)
+  - Agent (multi-step planner → retriever → synthesizer → critic; best for multi-entity queries)
 """
 from __future__ import annotations
 
@@ -54,12 +54,16 @@ with st.sidebar:
     st.subheader("Mode")
     mode = st.radio(
         "Pipeline",
-        options=["Single-shot", "Single-shot + Reranker", "Agent (planner → retrieve → synthesize)"],
+        options=[
+            "Single-shot",
+            "Single-shot + Reranker",
+            "Agent (planner → retrieve → synthesize → critique)",
+        ],
         index=0,
         captions=[
             "Fastest. Top-4 chunks straight to the LLM.",
             "Cross-encoder reranks top-12 to top-4. No measurable gain on eval set.",
-            "Decomposes multi-entity questions into per-company sub-queries. Best for comparisons.",
+            "Decomposes multi-entity questions into per-company sub-queries, then critiques the answer. Best for comparisons.",
         ],
     )
 
@@ -110,7 +114,7 @@ ask_clicked = st.button("Ask", type="primary", disabled=not question.strip())
 if ask_clicked and question.strip():
     if is_agent:
         agent = get_agent()
-        with st.spinner("Planning · retrieving · synthesizing…"):
+        with st.spinner("Planning · retrieving · synthesizing · critiquing…"):
             t0 = time.time()
             result = agent.answer(question.strip())
             elapsed = time.time() - t0
@@ -142,6 +146,35 @@ if ask_clicked and question.strip():
                 "**Source coverage:** "
                 + " · ".join(f"{t}: {n}" for t, n in sorted(ticker_counts.items()))
             )
+
+        # ---- Critic notes (advisory only, no re-planning) ----
+        crit = result.critique or {}
+        issues = crit.get("issues", [])
+        flags = {
+            "Entity coverage": crit.get("covers_all_entities", True),
+            "Grounded in sources": crit.get("well_grounded", True),
+            "No hallucinations": crit.get("no_hallucinations", True),
+        }
+        all_clean = all(flags.values()) and not issues
+        if all_clean:
+            st.caption("✅ Critic: answer is well-grounded with full entity coverage.")
+        else:
+            with st.expander(
+                f"⚠️ Critic flagged {len(issues)} issue{'s' if len(issues) != 1 else ''}",
+                expanded=False,
+            ):
+                cols = st.columns(3)
+                for col, (label, ok) in zip(cols, flags.items()):
+                    col.markdown(f"**{label}**: {'✅' if ok else '❌'}")
+                if issues:
+                    st.markdown("**Issues:**")
+                    for issue in issues:
+                        st.markdown(f"- {issue}")
+                st.caption(
+                    "Note: the critic is advisory and does not trigger re-planning. "
+                    "A looping critic was prototyped but rejected because it doubled "
+                    "per-query token cost without measurable answer improvement on this corpus."
+                )
 
         sources = result.sources
 

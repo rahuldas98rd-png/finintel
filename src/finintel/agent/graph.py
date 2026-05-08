@@ -1,9 +1,12 @@
 """LangGraph-based agent pipeline.
 
-Replaces single-shot RAG with planner → retriever → synthesizer.
+Replaces single-shot RAG with planner → retriever → synthesizer → critic.
+
 The planner decomposes the user question into per-company sub-queries when
 needed; the retriever runs metadata-filtered search for each and accumulates
-chunks; the synthesizer generates a single grounded answer.
+chunks; the synthesizer generates a single grounded answer; the critic runs
+once at the end as an advisory check (it does NOT loop back to re-plan — see
+the README's engineering decisions section for why).
 
 Solves the multi-company retrieval problem where naive top-K returns chunks
 biased toward whichever company's language embeds closer to the query.
@@ -72,6 +75,45 @@ PLANNER_USER_TEMPLATE = "Question: {question}\n\nOutput JSON only:"
 
 
 # ---------------------------------------------------------------------------
+# Critic prompt — advisory groundedness check, runs once after synthesizer
+# ---------------------------------------------------------------------------
+
+CRITIC_SYSTEM = """You are evaluating a RAG-generated answer about SEC filings.
+
+You will see the user's question, the planner's sub-queries, the synthesized answer,
+and the chunk IDs that were cited. Evaluate the answer along three dimensions:
+
+1. **Coverage**: Does the answer address every entity (company, section) implied by the sub-queries?
+2. **Grounding**: Are factual claims attributed via chunk IDs in [BRACKETS]?
+3. **Hallucinations**: Are there specific claims (numbers, dates, named entities) that wouldn't plausibly come from a 10-K filing?
+
+Be strict but fair. If the answer honestly says "the filings do not contain X," that is GOOD
+behavior, not a hallucination. Refusal grounded in the corpus is a feature, not a bug.
+
+Output JSON only, in this exact shape:
+{
+  "covers_all_entities": true|false,
+  "well_grounded": true|false,
+  "no_hallucinations": true|false,
+  "issues": ["short specific issue", ...]
+}
+
+Use an empty issues list when the answer is clean."""
+
+CRITIC_USER_TEMPLATE = """Question: {question}
+
+Sub-queries planned:
+{sub_queries}
+
+Answer:
+{answer}
+
+Chunk IDs cited as sources: {chunk_ids}
+
+Output JSON only:"""
+
+
+# ---------------------------------------------------------------------------
 # Graph state — what flows between nodes
 # ---------------------------------------------------------------------------
 
@@ -80,17 +122,19 @@ class AgentState(TypedDict):
     sub_queries: list[dict]
     retrieved_chunks: list[dict]
     answer: str
+    critique: dict
     input_tokens: int
     output_tokens: int
 
 
 @dataclass(frozen=True)
 class AgentAnswer:
-    """Result of an agent run, including planner output for transparency."""
+    """Result of an agent run, including planner output and critic notes."""
     question: str
     answer: str
     sub_queries: list[dict]
     sources: list[dict]
+    critique: dict
     input_tokens: int
     output_tokens: int
 
@@ -100,14 +144,20 @@ class AgentAnswer:
 # ---------------------------------------------------------------------------
 
 class AgentPipeline:
-    """Multi-step agentic RAG via LangGraph: plan → retrieve → synthesize."""
+    """Multi-step agentic RAG via LangGraph: plan → retrieve → synthesize → critique.
+
+    The critic runs once as an advisory pass and never re-loops. A looping
+    critic was prototyped but rejected: on free-tier infrastructure it doubles
+    per-query token cost and adds unbounded latency without measurable answer
+    improvement on this corpus.
+    """
 
     def __init__(
         self,
         embedder: Embedder | None = None,
         store: VectorStore | None = None,
-        per_query_k: int = 2,         # was 3
-        max_context_chunks: int = 4,  # was 8
+        per_query_k: int = 2,
+        max_context_chunks: int = 4,
     ) -> None:
         self.embedder = embedder or Embedder()
         self.store = store or VectorStore(vector_dim=self.embedder.dim)
@@ -133,10 +183,12 @@ class AgentPipeline:
         g.add_node("planner", self._plan)
         g.add_node("retriever", self._retrieve)
         g.add_node("synthesizer", self._synthesize)
+        g.add_node("critic", self._critique)
         g.add_edge(START, "planner")
         g.add_edge("planner", "retriever")
         g.add_edge("retriever", "synthesizer")
-        g.add_edge("synthesizer", END)
+        g.add_edge("synthesizer", "critic")
+        g.add_edge("critic", END)
         return g.compile()
 
     # ----- Nodes -----
@@ -215,6 +267,74 @@ class AgentPipeline:
             "output_tokens": state.get("output_tokens", 0) + response.usage.completion_tokens,
         }
 
+    def _critique(self, state: AgentState) -> dict:
+        """Single-pass advisory critic: validates answer, does not re-loop."""
+        # Skip cleanly if synthesizer produced no answer
+        if not state.get("answer") or state["answer"].startswith("No relevant chunks"):
+            return {
+                "critique": {
+                    "covers_all_entities": False,
+                    "well_grounded": False,
+                    "no_hallucinations": True,
+                    "issues": ["No answer was generated"],
+                }
+            }
+
+        sub_query_lines = "\n".join(
+            f"  - [{sq.get('ticker') or 'any'}/{sq.get('section') or 'any'}] {sq['question']}"
+            for sq in state["sub_queries"]
+        )
+        chunk_ids = [c["chunk_id"] for c in state["retrieved_chunks"]]
+
+        user_message = CRITIC_USER_TEMPLATE.format(
+            question=state["question"],
+            sub_queries=sub_query_lines,
+            answer=state["answer"],
+            chunk_ids=chunk_ids,
+        )
+
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                max_tokens=384,
+                response_format={"type": "json_object"},
+                messages=[
+                    {"role": "system", "content": CRITIC_SYSTEM},
+                    {"role": "user", "content": user_message},
+                ],
+            )
+            critique = json.loads(response.choices[0].message.content)
+            # Defensive defaults — never trust an LLM to produce all keys
+            critique.setdefault("covers_all_entities", True)
+            critique.setdefault("well_grounded", True)
+            critique.setdefault("no_hallucinations", True)
+            critique.setdefault("issues", [])
+
+            logger.info(
+                "Critic | coverage=%s grounded=%s no_halluc=%s issues=%d",
+                critique["covers_all_entities"],
+                critique["well_grounded"],
+                critique["no_hallucinations"],
+                len(critique["issues"]),
+            )
+
+            return {
+                "critique": critique,
+                "input_tokens": state.get("input_tokens", 0) + response.usage.prompt_tokens,
+                "output_tokens": state.get("output_tokens", 0) + response.usage.completion_tokens,
+            }
+        except Exception as exc:
+            logger.warning("Critic failed: %s", exc)
+            # Critic failure must NOT break the user experience
+            return {
+                "critique": {
+                    "covers_all_entities": True,
+                    "well_grounded": True,
+                    "no_hallucinations": True,
+                    "issues": [f"Critic unavailable: {type(exc).__name__}"],
+                }
+            }
+
     # ----- Public API -----
 
     def answer(self, question: str) -> AgentAnswer:
@@ -223,6 +343,7 @@ class AgentPipeline:
             "sub_queries": [],
             "retrieved_chunks": [],
             "answer": "",
+            "critique": {},
             "input_tokens": 0,
             "output_tokens": 0,
         }
@@ -232,6 +353,7 @@ class AgentPipeline:
             answer=final["answer"],
             sub_queries=final["sub_queries"],
             sources=final["retrieved_chunks"],
+            critique=final.get("critique", {}),
             input_tokens=final["input_tokens"],
             output_tokens=final["output_tokens"],
         )

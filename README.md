@@ -54,3 +54,15 @@ finintel/
 │       └── ui/__init__.py
 └── tests/
 ```
+
+## Evaluation results
+
+| Configuration | Recall | Citations | Tokens | Notes |
+|---|---|---|---|---|
+| BGE-base + top-4 (baseline) | 0.79 | 3.6 | 34K | Default |
+| + ms-marco-MiniLM reranker | 0.78 | 3.1 | 37K | Disabled — no measurable gain |
+
+The cross-encoder reranker did not improve keyword recall on a 10-question eval set, while adding 10% to token cost and ~50% to wall-clock time. Kept as an optional component (toggleable via `--rerank`) since it may help on harder corpora or with LLM-based grading.
+
+Eval methodology: keyword matching against curated `must_mention` terms.
+Future work: add LLM-as-judge grading (RAGAS) to catch semantic equivalences.

@@ -29,7 +29,8 @@ logger = logging.getLogger(__name__)
 DEFAULT_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
 DEFAULT_MODEL = os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
 DEFAULT_API_KEY_ENV = os.getenv("LLM_API_KEY_ENV", "GROQ_API_KEY")
-DEFAULT_TOP_K = 6
+DEFAULT_TOP_K = 4         # was 6 — fits Llama 3.1 8B free tier (6K TPM)
+DEFAULT_RETRIEVE_K = 12   # was 20 — reranker still has 3x candidates to pick from
 DEFAULT_MAX_TOKENS = 1024
 
 
@@ -55,7 +56,7 @@ class RAGPipeline:
         base_url: str = DEFAULT_BASE_URL,
         api_key_env: str = DEFAULT_API_KEY_ENV,
         top_k: int = DEFAULT_TOP_K,
-        retrieve_k: int = 20,
+        retrieve_k: int = DEFAULT_RETRIEVE_K,
     ) -> None:
         self.embedder = embedder or Embedder()
         self.store = store or VectorStore(vector_dim=self.embedder.dim)

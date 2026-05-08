@@ -15,6 +15,7 @@ dependencies = [
     "requests>=2.33.1",
     "sec-edgar-downloader>=5.1.0",
     "sentence-transformers>=5.4.1",
+    "streamlit>=1.57.0",
     "tiktoken>=0.12.0",
 ]
 

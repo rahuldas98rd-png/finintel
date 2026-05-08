@@ -111,11 +111,50 @@ def main() -> int:
     rag = RAGPipeline(reranker=reranker)
     print(f"Model: {rag.model} | reranker={'on' if reranker else 'off'}\n")
 
-    # ... rest of main() unchanged, but change the file naming to include label:
+    scores: list[dict] = []
+    for i, q in enumerate(eval_set, 1):
+        short_q = q["question"][:78] + ("…" if len(q["question"]) > 80 else "")
+        print(f"[{i:>2}/{len(eval_set)}] {short_q}")
+        t0 = time.time()
+        try:
+            rag_answer = rag.answer(
+                q["question"],
+                ticker=q.get("ticker"),
+                section=q.get("section_hint"),
+            )
+            elapsed = time.time() - t0
+        except Exception as e:
+            print(f"        ERROR: {type(e).__name__}: {e}")
+            continue
+
+        s = score_answer(q, rag_answer)
+        s["elapsed_sec"] = round(elapsed, 2)
+        scores.append(s)
+
+        kr = s["keyword_recall"]
+        kr_str = f"{kr:.2f}" if kr is not None else "n/a"
+        ok = (kr is not None and kr >= 0.5) or (s["expected_refusal"] and s["refused"])
+        marker = "PASS" if ok else "FAIL"
+        print(f"        {marker}  recall={kr_str}  citations={s['n_citations']}  "
+              f"sources={s['tickers_in_sources']}  {s['elapsed_sec']}s")
+
+    summary = aggregate(scores)
+
+    RESULTS_DIR.mkdir(exist_ok=True)
     ts = time.strftime("%Y%m%d_%H%M%S")
     detail_path = RESULTS_DIR / f"{args.label}_{ts}_detailed.json"
     summary_path = RESULTS_DIR / f"{args.label}_{ts}_summary.json"
-    # ... continue with existing detail/summary saving
+    detail_path.write_text(json.dumps(scores, indent=2, ensure_ascii=False), encoding="utf-8")
+    summary_path.write_text(json.dumps(summary, indent=2), encoding="utf-8")
+
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    print("=" * 60)
+    for k, v in summary.items():
+        print(f"  {k:<35}  {v}")
+    print(f"\nSaved details: evals/results/{detail_path.name}")
+    print(f"Saved summary: evals/results/{summary_path.name}")
+    return 0
 
 
 if __name__ == "__main__":

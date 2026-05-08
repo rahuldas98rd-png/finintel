@@ -6,5 +6,18 @@
 {"id": "q06", "question": "What does Tesla disclose about risks of autonomous and Full Self-Driving features?", "ticker": "TSLA", "section_hint": "risk_factors", "must_mention": ["autonomous", "FSD", "self-driving", "safety"]}
 {"id": "q07", "question": "How has Tesla's discussion of manufacturing scale risks evolved between their 2023 and 2026 10-K filings?", "ticker": "TSLA", "must_mention": ["manufacturing", "production", "scale", "capacity"]}
 {"id": "q08", "question": "What is Apple's current stock price?", "ticker": "AAPL", "must_mention": [], "expected_refusal": true}
-{"id": "q09", "question": "How do Google and Microsoft each frame competitive risks in their cloud businesses?", "must_mention": ["cloud", "competition"]}
+{"id": "q09", "question": "How do Google and Microsoft each frame competitive risks in their cloud businesses?", "expected_tickers": ["GOOGL", "MSFT"], "must_mention": ["cloud", "competition"]}
 {"id": "q10", "question": "What did Microsoft report regarding commercial cloud revenue growth in the most recent fiscal year?", "ticker": "MSFT", "section_hint": "mda", "must_mention": ["commercial cloud", "growth"]}
+{"id": "q11", "question": "How do Apple and Microsoft each describe AI-related risks in their filings?", "expected_tickers": ["AAPL", "MSFT"], "must_mention": ["AI", "Apple", "Microsoft", "risk"]}
+{"id": "q12", "question": "How do Tesla and Apple each discuss risks related to component supply or supply chain disruptions?", "expected_tickers": ["TSLA", "AAPL"], "must_mention": ["supply", "Tesla", "Apple"]}
+{"id": "q13", "question": "Compare how Google and Microsoft characterize cloud business growth in their MD&A.", "expected_tickers": ["GOOGL", "MSFT"], "must_mention": ["cloud", "growth", "Google", "Microsoft"]}
+{"id": "q14", "question": "How do Apple, Google, and Microsoft each describe data privacy and cybersecurity risks?", "expected_tickers": ["AAPL", "GOOGL", "MSFT"], "must_mention": ["privacy", "cybersecurity", "Apple", "Google", "Microsoft"]}
+{"id": "q15", "question": "Compare regulatory risk frameworks discussed by JPMorgan and Google.", "expected_tickers": ["JPM", "GOOGL"], "must_mention": ["regulatory", "JPMorgan", "Google"]}
+{"id": "q16", "question": "How do JPMorgan and Microsoft each describe operational risks they face?", "expected_tickers": ["JPM", "MSFT"], "must_mention": ["operational", "risk", "JPMorgan", "Microsoft"]}
+{"id": "q17", "question": "Compare Tesla's and Apple's discussions of climate change and environmental sustainability risks.", "expected_tickers": ["TSLA", "AAPL"], "must_mention": ["climate", "environmental", "Tesla", "Apple"]}
+{"id": "q18", "question": "What is the consensus analyst price target for Apple stock?", "ticker": "AAPL", "must_mention": [], "expected_refusal": true}
+{"id": "q19", "question": "What did Microsoft's CFO say about cloud margins on the most recent earnings call?", "ticker": "MSFT", "must_mention": [], "expected_refusal": true}
+{"id": "q20", "question": "How has Apple's services revenue strategy evolved over its 10-K filings?", "ticker": "AAPL", "must_mention": ["services", "revenue", "growth"]}
+{"id": "q21", "question": "What does Microsoft identify as both a key AI-related risk and an AI-related growth opportunity?", "ticker": "MSFT", "must_mention": ["AI", "risk", "opportunity", "growth"]}
+{"id": "q22", "question": "For Tesla, what factors are described as both risks and drivers of revenue growth?", "ticker": "TSLA", "must_mention": ["risk", "growth", "revenue"]}
+{"id": "q23", "question": "How does Google's cloud business appear in both its risk discussion and its growth narrative?", "ticker": "GOOGL", "must_mention": ["cloud", "risk", "growth"]}

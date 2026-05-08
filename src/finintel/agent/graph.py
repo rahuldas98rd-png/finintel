@@ -224,9 +224,15 @@ class AgentPipeline:
         }
 
     def _retrieve(self, state: AgentState) -> dict:
-        """Run filtered retrieval for each sub-query, dedupe, cap context."""
-        all_chunks: list[dict] = []
-        seen: set[str] = set()
+        """Run filtered retrieval per sub-query, then round-robin merge to preserve
+        coverage across all sub-queries.
+
+        A naive concat-then-truncate strategy drops the last sub-queries entirely
+        when total candidate chunks exceed max_context_chunks. Round-robin guarantees
+        every sub-query contributes its top chunk before any contributes its second.
+        """
+        # Step 1: gather per-sub-query hits
+        per_sq_hits: list[list[dict]] = []
         for sq in state["sub_queries"]:
             query_vec = self.embedder.encode([sq["question"]], show_progress=False)[0]
             hits = self.store.search(
@@ -235,13 +241,31 @@ class AgentPipeline:
                 ticker=sq.get("ticker"),
                 section=sq.get("section"),
             )
-            for hit in hits:
+            per_sq_hits.append(list(hits))
+
+        # Step 2: round-robin merge — round k pulls the k-th best chunk from each sub-query
+        merged: list[dict] = []
+        seen: set[str] = set()
+        for round_idx in range(self.per_query_k):
+            if len(merged) >= self.max_context_chunks:
+                break
+            for hits in per_sq_hits:
+                if round_idx >= len(hits):
+                    continue
+                if len(merged) >= self.max_context_chunks:
+                    break
+                hit = hits[round_idx]
                 if hit["chunk_id"] not in seen:
                     seen.add(hit["chunk_id"])
-                    all_chunks.append(hit)
-        all_chunks = all_chunks[: self.max_context_chunks]
-        logger.info("Retriever accumulated %d unique chunks", len(all_chunks))
-        return {"retrieved_chunks": all_chunks}
+                    merged.append(hit)
+
+        logger.info(
+            "Retriever (round-robin) | sub-queries=%d, kept=%d/%d",
+            len(state["sub_queries"]),
+            len(merged),
+            self.max_context_chunks,
+        )
+        return {"retrieved_chunks": merged}
 
     def _synthesize(self, state: AgentState) -> dict:
         """Generate the final answer from accumulated chunks."""

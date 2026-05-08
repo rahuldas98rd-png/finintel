@@ -1,0 +1,53 @@
+[
+  {
+    "id": "q01",
+    "question": "What does Apple identify as risks related to dependence on third-party suppliers and manufacturing?",
+    "answer": "Apple identifies several risks related to dependence on third-party suppliers and manufacturing, including the risk of supply shortages and price increases due to industry-wide shortages and commodity pricing fluctuations [AAPL_10-K_0000320193-25-000079_risk_factors_005]. The company also notes that it obtains certain components from single or limited sources, which subjects it to significant supply and pricing risks [AAPL_10-K_0000320193-22-000108_risk_factors_005]. Additionally, Apple's reliance on outsourcing partners for manufacturing and logistical services, primarily located in Asia, reduces its direct control over production and distribution, and can have an adverse effect on the quality or quantity of products manufactured or services provided [AAPL_10-K_0000320193-22-000108_risk_factors_004]. The company also faces risks related to the financial stability of its suppliers, including the risk of business failure or consolidation, which can further limit its ability to obtain components on commercially reasonable terms [AAPL_10-K_0000320193-22-000108_risk_factors_005]. Furthermore, Apple's investment in manufacturing process equipment and prepayments to suppliers can be negatively impacted if these partners experience severe financial problems or disruptions [AAPL_10-K_0000320193-22-000108_risk_factors_005]. Overall, these risks can materially adversely affect Apple's business, results of operations, and financial condition [AAPL_10-K_0000320193-25-000079_risk_factors_005].",
+    "keyword_recall": 0.5,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 6,
+    "input_tokens": 5294,
+    "output_tokens": 316,
+    "answer_length": 1505,
+    "elapsed_sec": 2.85
+  },
+  {
+    "id": "q02",
+    "question": "What was the primary driver of Apple's Services revenue in their most recent fiscal year?",
+    "answer": "The provided filing excerpts do not contain specific information about the primary driver of Apple's Services revenue in their most recent fiscal year. While the excerpts discuss the increase in Services net sales in various segments, such as Americas and Europe [AAPL_10-K_0000320193-24-000123_mda_000], they do not provide detailed information about the primary driver of this increase. To answer this question, more specific information about Apple's Services segment would be required. A refined query could be: \"What were the key factors contributing to the growth of Apple's Services net sales in the most recent fiscal year?\"",
+    "keyword_recall": 0.3333333333333333,
+    "refused": true,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 1,
+    "input_tokens": 4955,
+    "output_tokens": 126,
+    "answer_length": 632,
+    "elapsed_sec": 3.09
+  },
+  {
+    "id": "q03",
+    "question": "How does Google describe risks from artificial intelligence systems they develop or deploy?",
+    "answer": "The provided filing excerpts describe risks associated with artificial intelligence (AI) systems developed or deployed by Google, including ethical, technological, legal, regulatory, and other challenges [GOOGL_10-K_0001652044-25-000014_risk_factors_002]. These risks may negatively affect Google's brands and demand for its products and services [GOOGL_10-K_0001652044-25-000014_risk_factors_002]. Additionally, the development and implementation of AI technologies may increase Google's exposure to cyber attacks or other security incidents [GOOGL_10-K_0001652044-26-000018_risk_factors_011]. The company also notes that new and evolving products and services, including those that use AI, raise various challenges that may harm its reputation, financial condition, and operating results [GOOGL_10-K_0001652044-26-000018_risk_factors_001]. Overall, Google highlights the inherent risks associated with AI development and deployment, including regulatory, security, and reputational risks [GOOGL_10-K_0001652044-25-000014_risk_factors_013].",
+    "keyword_recall": 0.75,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "GOOGL"
+    ],
+    "n_citations": 5,
+    "input_tokens": 5171,
+    "output_tokens": 240,
+    "answer_length": 1041,
+    "elapsed_sec": 30.9
+  }
+]

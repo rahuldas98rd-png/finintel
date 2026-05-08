@@ -1,0 +1,10 @@
+{
+  "n_questions": 10,
+  "n_factual": 9,
+  "n_refusal": 1,
+  "avg_keyword_recall": 0.778,
+  "refusal_accuracy": "1/1",
+  "avg_citations_per_factual_answer": 3.11,
+  "total_input_tokens": 34476,
+  "total_output_tokens": 2842
+}

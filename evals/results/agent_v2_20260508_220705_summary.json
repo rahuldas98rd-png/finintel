@@ -1,0 +1,15 @@
+{
+  "n_questions": 23,
+  "n_factual": 20,
+  "n_multi_company": 8,
+  "n_refusal": 3,
+  "avg_keyword_recall": 0.854,
+  "avg_multi_company_ticker_coverage": 1.0,
+  "refusal_accuracy": "3/3",
+  "avg_citations_per_factual_answer": 3.4,
+  "avg_latency_sec": 42.61,
+  "total_input_tokens": 90711,
+  "total_output_tokens": 10183,
+  "critic_clean_rate": "11/23",
+  "avg_sub_queries_per_question": 1.7
+}

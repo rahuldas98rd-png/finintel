@@ -1,0 +1,36 @@
+[
+  {
+    "id": "q05",
+    "question": "How is Microsoft's Intelligent Cloud segment performing in the most recent fiscal year?",
+    "answer": "In the most recent fiscal year, Microsoft's Intelligent Cloud segment reported a 20% increase in revenue, driven by Azure and other cloud services. The revenue for Intelligent Cloud was $105,362 million.  [MSFT_10-K_0000950170-24-087843_mda_005]\n\nOperating income for Intelligent Cloud increased by $11.7 billion, or 31%, to $49,584 million. Gross margin for Intelligent Cloud increased by $11.6 billion, or 19%, driven by growth in Azure. However, gross margin percentage decreased slightly. \n\nIntelligent Cloud revenue growth was driven by Azure and other cloud services, which grew 30% and 22% respectively.",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "MSFT"
+    ],
+    "n_citations": 1,
+    "input_tokens": 4910,
+    "output_tokens": 145,
+    "answer_length": 610,
+    "elapsed_sec": 0.88
+  },
+  {
+    "id": "q08",
+    "question": "What is Apple's current stock price?",
+    "answer": "The provided filing excerpts do not contain information about Apple's current stock price.",
+    "keyword_recall": null,
+    "refused": true,
+    "expected_refusal": true,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 0,
+    "input_tokens": 4946,
+    "output_tokens": 16,
+    "answer_length": 90,
+    "elapsed_sec": 61.61
+  }
+]

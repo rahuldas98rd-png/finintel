@@ -1,0 +1,156 @@
+[
+  {
+    "id": "q01",
+    "question": "What does Apple identify as risks related to dependence on third-party suppliers and manufacturing?",
+    "answer": "Apple identifies dependence on third-party suppliers and manufacturing as a risk, citing volatility in their markets, competitive pressures, and rapid technological changes. This can lead to forecasting errors, which may result in excess or insufficient inventory, or components not being utilized fully [AAPL_10-K_0000320193-24-000123_risk_factors_006].\n\nAdditionally, Apple is reliant on third-party intellectual property and licenses, which may not be available on commercially reasonable terms or may require modifications to products or features [AAPL_10-K_0000320193-24-000123_risk_factors_006]. Furthermore, reliance on single or limited sources for components exposes Apple to significant supply and pricing risks, which can affect their business, results of operations, and financial condition [AAPL_10-K_0000320193-25-000079_risk_factors_005, AAPL_10-K_0000320193-22-000108_risk_factors_005, AAPL_10-K_0000320193-23-000106_risk_factors_004]. The global semiconductor industry has experienced shortages and supply chain disruptions in the past, which can have a similar impact on Apple.",
+    "keyword_recall": 0.5,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 2,
+    "input_tokens": 3604,
+    "output_tokens": 244,
+    "answer_length": 1095,
+    "elapsed_sec": 1.58
+  },
+  {
+    "id": "q02",
+    "question": "What was the primary driver of Apple's Services revenue in their most recent fiscal year?",
+    "answer": "The provided filing excerpts do not explicitly state the primary driver of Apple's Services revenue in their most recent fiscal year (2024) but mention various drivers for earlier years. \n\nHowever, we can infer some information from the excerpts. For instance, the Services gross margin percentage increased during 2024 due primarily to a different Services mix [AAPL_10-K_0000320193-24-000123_mda_002]. In addition, the excerpt explains that the gross margins are subject to volatility and downward pressure due to various factors, as discussed in Part I, Item 1A of the Form 10-K [AAPL_10-K_0000320193-24-000123_mda_002].\n\nHowever, to determine the primary driver of Services revenue in 2024, we would need additional information, possibly in the \"Management's Discussion and Analysis\" section or other sections of the 2024 filing.",
+    "keyword_recall": 0.3333333333333333,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 2,
+    "input_tokens": 3410,
+    "output_tokens": 189,
+    "answer_length": 833,
+    "elapsed_sec": 33.14
+  },
+  {
+    "id": "q03",
+    "question": "How does Google describe risks from artificial intelligence systems they develop or deploy?",
+    "answer": "Google describes risks from artificial intelligence systems they develop or deploy as the potential for unintended consequences, uses, or customization of their AI tools and systems may negatively affect human rights, privacy, employment, or other social concerns [GOOGL_10-K_0001652044-25-000014_risk_factors_008]. They also face risks due to the development and implementation of AI technologies increasing exposure to cyber attacks or security incidents, particularly when AI technologies are exploited by third parties to breach their or other parties' systems [GOOGL_10-K_0001652044-26-000018_risk_factors_011]. Additionally, they worry about regulatory action and legal liability, including under specific legislation regulating AI, as well as new applications of existing data protection, cybersecurity, privacy, intellectual property, and other laws, due to their development, use, and commercialization of AI products and services [GOOGL_10-K_0001652044-25-000014_risk_factors_014].",
+    "keyword_recall": 0.75,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "GOOGL"
+    ],
+    "n_citations": 3,
+    "input_tokens": 3517,
+    "output_tokens": 205,
+    "answer_length": 991,
+    "elapsed_sec": 47.1
+  },
+  {
+    "id": "q04",
+    "question": "What regulatory and capital-requirement risks does JPMorgan emphasize?",
+    "answer": "According to the provided filing excerpts, JPMorgan emphasizes the following regulatory and capital-requirement risks:\n\n1. The risk of failing to maintain the required level and composition of capital, which could limit JPMorgan Chase's ability to distribute capital to shareholders or to support its business activities [JPM_10-K_0000019617-25-000270_risk_factors_017]. Changes in applicable capital requirements, such as those resulting from proposals like the Basel III reforms, could also impact JPMorgan Chase's capital positions [JPM_10-K_0000019617-25-000270_risk_factors_017].\n2. The uncertainty surrounding the final rules on the Basel III reforms and the Federal Reserve's proposal to amend the GSIB surcharge, which could impact JPMorgan Chase's capital requirements and decisions [JPM_10-K_0000019617-25-000270_risk_factors_017].\n3. The potential requirement to hold additional capital buffers, including a GSIB surcharge, SCB, and countercyclical buffer, which could increase the amount of capital JPMorgan Chase is required to hold [JPM_10-K_0000019617-25-000270_risk_factors_017].\n4. The risk of not being able to maintain the required level and composition of capital, which could lead to restrictions on capital distributions, discretionary bonus payments, and other adverse consequences [JPM_10-K_0001628280-26-008131_risk_factors_015].\n\nThese risks could impact JPMorgan Chase's ability to distribute capital, support business activities, and maintain its competitive standing [JPM_10-K_0000019617-24-000225_risk_factors_001 and JPM_10-K_0000019617-25-000270_risk_factors_001].",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "JPM"
+    ],
+    "n_citations": 5,
+    "input_tokens": 3395,
+    "output_tokens": 379,
+    "answer_length": 1596,
+    "elapsed_sec": 37.42
+  },
+  {
+    "id": "q05",
+    "question": "How is Microsoft's Intelligent Cloud segment performing in the most recent fiscal year?",
+    "answer": "The provided filing excerpts do not directly mention Microsoft's Intelligent Cloud segment performance for the most recent fiscal year. However, we can infer its performance from the excerpts.\n\nThe Intelligent Cloud segment revenue increased $17.5 billion or 20% in fiscal year 2024 compared to fiscal year 2023. [MSFT_10-K_0000950170-24-087843_mda_005]\n\nWithin the Intelligent Cloud segment, Server products and cloud services revenue increased $17.8 billion or 22% in fiscal year 2024, driven by Azure and other cloud services revenue growth of 30%. [MSFT_10-K_0000950170-24-087843_mda_005]\n\nGross margin for the Intelligent Cloud segment increased $11.6 billion or 19% in fiscal year 2024, driven by growth in Azure. Gross margin percentage decreased slightly, but this decrease was offset by improvements in Office 365 Commercial. [MSFT_10-K_0000950170-24-087843_mda_005]",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "MSFT"
+    ],
+    "n_citations": 3,
+    "input_tokens": 3381,
+    "output_tokens": 217,
+    "answer_length": 875,
+    "elapsed_sec": 39.4
+  },
+  {
+    "id": "q06",
+    "question": "What does Tesla disclose about risks of autonomous and Full Self-Driving features?",
+    "answer": "Tesla identifies the following risks related to its autonomous and Full Self-Driving features:\n\nThese risks include:\n\n1. The potential for accidents resulting in death or personal injury, particularly when Autopilot, Enhanced Autopilot, or FSD Capability features are engaged [TSLA_10-K_0000950170-23-001409_risk_factors_007].\n2. Misuse or claimed failures or alleged misrepresentations of such new technologies, including claims and regulatory scrutiny arising from or related to these features [TSLA_10-K_0000950170-23-001409_risk_factors_007, TSLA_10-K_0001628280-25-003063_risk_factors_006].\n3. The potential for high-speed crashes to cause field or testing failures of vehicles or other battery packs, resulting in product liability claims [TSLA_10-K_0000950170-23-001409_risk_factors_007, TSLA_10-K_0001628280-25-003063_risk_factors_006].\n4. The risk of cyber-attacks or other security incidents affecting the company's information technology systems or data, including potential data breaches, intellectual property theft, and reputational damage [TSLA_10-K_0001628280-25-003063_risk_factors_009].\n5. The potential for defects in software to cause issues with the company's products and features, including exposure to external attacks [TSLA_10-K_0001628280-25-003063_risk_factors_006, TSLA_10-K_0001628280-25-003063_risk_factors_009].",
+    "keyword_recall": 0.75,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "TSLA"
+    ],
+    "n_citations": 2,
+    "input_tokens": 3577,
+    "output_tokens": 347,
+    "answer_length": 1342,
+    "elapsed_sec": 37.43
+  },
+  {
+    "id": "q07",
+    "question": "How has Tesla's discussion of manufacturing scale risks evolved between their 2023 and 2026 10-K filings?",
+    "answer": "Based on the provided filing excerpts, Tesla's discussion of manufacturing scale risks between their 2023 and 2026 10-K filings has primarily centered on expanding global production capacity, addressing bottlenecks, and managing supply chain risks.\n\nIn the 2023 filing [TSLA_10-K_0000950170-23-001409_mda_001], Tesla discussed the risk of concurrent international projects and industry-wide component constraints on manufacturing scale, [TSLA_10-K_0000950170-23-001409_mda_001]. The company also highlighted the challenges of establishing and ramping manufacturing operations, including new product and manufacturing technologies, labor shortages, and external factors like the COVID-19 pandemic.\n\nIn the 2026 filing [TSLA_10-K_0001628280-26-003952_mda_000], Tesla reiterated its focus on growing and optimizing manufacturing capacity, with specific mention of maximizing production rate and efficiency at Gigafactories [TSLA_10-K_0001628280-26-003952_mda_000]. While some risks, such as tariff regimes and global supply chain disruptions, have increased since 2023 [TSLA_10-K_0001628280-26-003952_mda_000], the company's discussion of manufacturing scale risks does not appear to have undergone significant changes.\n\nHowever, the 2026 filing introduced a new risk factor related to the 2025 CEO Performance Award, which includes product goals that may be misaligned with consumer demand, potentially resulting in underperformance or write-downs of related assets [TSLA_10-K_0001628280-26-003952_risk_factors_021]. This discussion is more focused on product development and strategic alignment rather than manufacturing scale risks per se.\n\nOverall, while there is some mention of supply chain risks and challenges in expanding manufacturing capacity, the company's discussion of manufacturing scale risks does not appear to have significantly evolved between the 2023 and 2026 filings, with a continued focus on addressing bottlenecks and managing global production capacity.",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "TSLA"
+    ],
+    "n_citations": 6,
+    "input_tokens": 3579,
+    "output_tokens": 430,
+    "answer_length": 1976,
+    "elapsed_sec": 39.74
+  },
+  {
+    "id": "q08",
+    "question": "What is Apple's current stock price?",
+    "answer": "Unfortunately, the provided filing excerpts do not contain information about Apple's current stock price.",
+    "keyword_recall": null,
+    "refused": true,
+    "expected_refusal": true,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 0,
+    "input_tokens": 3394,
+    "output_tokens": 18,
+    "answer_length": 105,
+    "elapsed_sec": 37.68
+  },
+  {
+    "id": "q09",
+    "question": "How do Google and Microsoft each frame competitive risks in their cloud businesses?",
+    "answer": "Based on the provided excerpts from Google's (GOOGL) and Microsoft's (MSFT) SEC filings, I will frame how each company competes and frames competitive risks in their cloud businesses.\n\nGoogle Cloud: \nGOOGL identifies competitive risks in their cloud business as rapid development and deployment of cloud-based services by competitors, competitive pricing and delivery models, and increasing regulatory scrutiny and requirements [GOOGL_10-K_0001652044-24-000022_risk_factors_002]. They also note the potential for downward pressure on their operating margin due to competitors' low-cost or no-cost operating system licenses, which may decrease their PC operating system margins [GOOGL_10-K_0001652044-24-000022_risk_factors_002]. Moreover, GOOGL highlights the challenges of competing with content and application marketplaces with scale and significant installed bases [GOOGL_10-K_0001652044-25-000014_risk_factors_002].\n\nMicrosoft:\nMSFT frames competitive risks in their cloud business as intense competition across all markets for their products and services, which may lead to lower revenue or operating margins [MSFT_10-K_0001564590-22-026876_risk_factors_000]. They also mention competition from firms with a vertically-integrated model, where a single firm controls the software and hardware elements of a product and related services [MSFT_10-K_0001564590-22-026876_risk_factors_000]. Furthermore, MSFT highlights the challenges of competing with popular products or services offered on competing platforms, which may increase their competitive strength [MSFT_10-K_0001564590-22-026876_risk_factors_000].\n\nComparison of competitive risks:\nWhile both companies highlight intense competition as a risk factor, GOOGL's cloud business risks are closely tied to the challenges of competing with low-cost or no-cost operating system licenses, content and application marketplaces, and the rapidly evolving nature of cloud services. In contrast, MSFT's competitive risks are more broadly focused on the general intensification of competition across all markets for their products and services.\n\nPlease note that the specific nature and extent of these risks may not be fully captured in these excerpts, and more detailed analysis is necessary to comprehensively understand the competitive landscape and risks associated with each company's cloud business.",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 4,
+    "tickers_in_sources": [
+      "GOOGL",
+      "MSFT"
+    ],
+    "n_citations": 6,
+    "input_tokens": 3516,
+    "output_tokens": 482,
+    "answer_length": 2355,
+    "elapsed_sec": 37.32
+  }
+]

@@ -1,0 +1,105 @@
+[
+  {
+    "id": "q01",
+    "question": "What does Apple identify as risks related to dependence on third-party suppliers and manufacturing?",
+    "answer": "Apple identifies the following risks related to dependence on third-party suppliers and manufacturing:\n\n1. Supply and pricing risks due to dependence on single or limited sources of components [AAPL_10-K_0000320193-25-000079_risk_factors_005].\n2. Industry-wide shortages and significant commodity pricing fluctuations that can affect the Company's ability to obtain components in sufficient quantities on commercially reasonable terms [AAPL_10-K_0000320193-25-000079_risk_factors_005].\n3. Component suppliers may suffer from poor financial conditions, leading to business failure or consolidation, which can limit the Company's ability to obtain components [AAPL_10-K_0000320193-22-000108_risk_factors_005].\n4. The Company's reliance on outsourcing partners for manufacturing and logistics can reduce its direct control over production and distribution, potentially affecting product quality or quantity [AAPL_10-K_0000320193-22-000108_risk_factors_004].\n5. Risks associated with the continued availability of custom components at acceptable prices, or at all, especially for new products using new technologies [AAPL_10-K_0000320193-22-000108_risk_factors_005].\n6. Delays or constraints in component supply or manufacturing can adversely affect the Company's business, results of operations, and financial condition [AAPL_10-K_0000320193-22-000108_risk_factors_005].\n7. Dependence on third-party suppliers and manufacturers can increase the risk of design and manufacturing defects, quality issues, and product liability claims [AAPL_10-K_0000320193-24-000123_risk_factors_005].\n8. The Company's complex and global supply chain makes it vulnerable to disruptions caused by natural and man-made disasters, international trade disputes, and other factors [AAPL_10-K_0000320193-22-000108_risk_factors_004].\n9. The Company may not be able to obtain the necessary licenses to use third-party intellectual property, which can have a material adverse impact on its business, results of operations, and financial condition [AAPL_10-K_0000320193-24-000123_risk_factors_006].",
+    "keyword_recall": 0.5,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 9,
+    "input_tokens": 5294,
+    "output_tokens": 462,
+    "answer_length": 2066,
+    "elapsed_sec": 32.04
+  },
+  {
+    "id": "q05",
+    "question": "How is Microsoft's Intelligent Cloud segment performing in the most recent fiscal year?",
+    "answer": "The provided filing excerpts do not directly state how Microsoft's Intelligent Cloud segment is performing in the most recent fiscal year (2025). However, we can make some inferences based on provided metrics and segment results.\n\nFrom the recent filing [MSFT_10-K_0000950170-25-100235_mda_004], we know that Intelligent Cloud revenue for 2025 increased by $18.5 billion or 21% compared to 2024. This significant growth is primarily driven by Azure and server products and cloud services, which saw revenue growth of 36% and 22%, respectively.\n\nAdditionally, Intelligent Cloud operating income for 2025 increased by $6.8 billion or 18% compared to 2024, with gross margin increasing by $11.6 billion or 19% due to growth in Azure. However, Intelligent Cloud gross margin percentage decreased slightly, primarily due to the impact of scaling AI infrastructure.\n\nMore specific metrics, such as Microsoft Cloud revenue, revenue growth, and gross margin percentage for the Intelligent Cloud segment, can be found in the commercial business metrics section [MSFT_10-K_0001564590-22-026876_mda_005], but these are specific to 2022 compared to 2021.\n\nTo answer the question more directly, a refined query would focus on extracting the Intelligent Cloud segment results for the most recent fiscal year from the provided excerpts, which may not be directly stated.",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "MSFT"
+    ],
+    "n_citations": 2,
+    "input_tokens": 4651,
+    "output_tokens": 295,
+    "answer_length": 1355,
+    "elapsed_sec": 2.22
+  },
+  {
+    "id": "q07",
+    "question": "How has Tesla's discussion of manufacturing scale risks evolved between their 2023 and 2026 10-K filings?",
+    "answer": "The provided filing excerpts do not contain a direct comparison between the discussion of manufacturing scale risks in Tesla's 2023 and 2026 10-K filings. However, some risk factors related to manufacturing scale and capacity are mentioned in the excerpts.\n\nIn the excerpt [TSLA_10-K_0001628280-26-003952_risk_factors_001], Tesla discusses the risks associated with scaling up their production and supply chain, citing concerns about the ability to secure additional or alternate sources for components, maintain cost reductions, and avoid unfavorable changes to terms with suppliers. \n\nIn the excerpt [TSLA_10-K_0001628280-26-003952_mda_001], Tesla mentions their focus on \"growing and optimizing our manufacturing capacity\" but does not discuss specific risks associated with manufacturing scale.\n\nIt appears that Tesla's discussion of manufacturing scale risks has not significantly evolved between their 2023 and 2026 10-K filings based on the provided excerpts.\n\nTesla's discussion of potential risks to their manufacturing scale and capacity expansion remains consistent across the excerpts, including concerns about:\n\n* Supplier solvency and operational ability\n* Ability to secure additional or alternate sources for components\n* Maintaining cost reductions and avoiding unfavorable changes to terms with suppliers\n* Ongoing regulatory compliance, procurement, and maintenance of construction, environmental, and operational licenses and permitting\n* Hiring, training, and retention of qualified employees\n\nHowever, it is essential to note that the provided excerpts are incomplete for a thorough evaluation of the evolution in Tesla's discussion of manufacturing scale risks.",
+    "keyword_recall": 1.0,
+    "refused": true,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "TSLA"
+    ],
+    "n_citations": 2,
+    "input_tokens": 5199,
+    "output_tokens": 319,
+    "answer_length": 1684,
+    "elapsed_sec": 2.29
+  },
+  {
+    "id": "q08",
+    "question": "What is Apple's current stock price?",
+    "answer": "The provided filing excerpts do not contain information about Apple's current stock price.\n\nHowever, we can infer that Apple's stock price is subject to significant fluctuations, as stated in the \"General Risks\" section of the 2025 Form 10-K [AAPL_10-K_0000320193-25-000079_risk_factors_017]. According to this excerpt, the Company's stock has experienced substantial price volatility in the past and may continue to do so in the future.\n\nAdditionally, the excerpt mentions that the price of the Company's stock may be affected by factors such as expectations related to future growth, profitability, dividends, share repurchases, or other market expectations. If the Company fails to meet these expectations, the price of its stock may decline significantly.\n\nTherefore, to get an accurate answer about Apple's current stock price, I would recommend checking a reliable financial information source, such as Yahoo Finance or Bloomberg, that provides real-time stock prices.",
+    "keyword_recall": null,
+    "refused": true,
+    "expected_refusal": true,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "AAPL"
+    ],
+    "n_citations": 1,
+    "input_tokens": 4900,
+    "output_tokens": 195,
+    "answer_length": 974,
+    "elapsed_sec": 55.32
+  },
+  {
+    "id": "q09",
+    "question": "How do Google and Microsoft each frame competitive risks in their cloud businesses?",
+    "answer": "Based on the excerpts from the SEC filings of Google (GOOGL) and Microsoft (MSFT), both companies frame competitive risks in their cloud businesses similarly, but with some differences in emphasis.\n\nBoth companies highlight the intense competition in the cloud market, with rapid development and deployment of cloud-based services by competitors. They also stress the need to balance investment in infrastructure and personnel with the need to maintain operating margins.\n\nMicrosoft emphasizes the challenge of attracting and retaining top talent in a competitive market, as well as the need to adapt to changes in customer preferences and technological advancements.\n\nGoogle, on the other hand, focuses on the difficulty of establishing a cloud ecosystem that can compete effectively, as well as the need to manage the complexity of its cloud infrastructure. It also highlights the regulatory risks associated with its cloud business, particularly with respect to working with financial services, healthcare, and public sector customers.\n\nBoth companies also mention the need to invest in cybersecurity and talent to build and maintain infrastructure to support cloud computing services.\n\nIn terms of specific risks, Microsoft notes that the investments it is making in cloud and AI infrastructure and devices will continue to increase its operating costs and may decrease its operating margins. Google mentions that it is incurring significant costs to build and maintain cloud computing services, invest in cybersecurity, and hire talent.\n\nIn terms of competitive dynamics, Microsoft mentions that competitors' rules governing their content and applications marketplaces may restrict its ability to distribute products and services through them in accordance with its technical and business model objectives. Google does not mention this specific risk in its risk factor section.\n\nOverall, while both companies frame competitive risks in their cloud businesses similarly, there are some differences in emphasis and specific risks highlighted in their risk factor sections.\n\nCitations:\n\n* Both companies highlight the intense competition in the cloud market: [MSFT_10-K_0001564590-22-026876_risk_factors_001], [GOOGL_10-K_0001652044-24-000022_risk_factors_002]\n* Microsoft emphasizes the challenge of attracting and retaining top talent: [MSFT_10-K_0001564590-22-026876_risk_factors_001]\n* Google focuses on the difficulty of establishing a cloud ecosystem: [GOOGL_10-K_0001652044-24-000022_risk_factors_002]\n* Both companies note the need to invest in cybersecurity and talent: [GOOGL_10-K_0001652044-24-000022_risk_factors_002], [MSFT_10-K_0001564590-22-026876_risk_factors_001]\n* Microsoft mentions the impact of investments on operating costs: [MSFT_10-K_0000950170-23-035122_mda_001]\n* Google mentions the regulatory risks associated with its cloud business: [GOOGL_10-K_0001652044-24-000022_risk_factors_002]",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "GOOGL",
+      "MSFT"
+    ],
+    "n_citations": 8,
+    "input_tokens": 5165,
+    "output_tokens": 597,
+    "answer_length": 2916,
+    "elapsed_sec": 49.08
+  },
+  {
+    "id": "q10",
+    "question": "What did Microsoft report regarding commercial cloud revenue growth in the most recent fiscal year?",
+    "answer": "Microsoft reported Microsoft Cloud revenue growth of 32% to $91.2 billion in fiscal year 2022 and 23% to $137.4 billion in fiscal year 2023 [MSFT_10-K_0000950170-24-087843_mda_000]. In fiscal year 2024, the growth rate was not mentioned. However, it is stated that Microsoft Cloud gross margin percentage decreased to 71% in fiscal year 2024, and excluding the impact of the change in accounting estimate, it increased slightly driven by improvements in Azure and Office 365 Commercial [MSFT_10-K_0000950170-24-087843_mda_005]. For the latest available year (fiscal year 2025), the provided filing does not explicitly state the Microsoft Cloud revenue growth; however, it mentions the commercial and other business metrics. In particular, it states that Microsoft Cloud gross margin percentage decreased to 69% in fiscal year 2025 driven by the impact of scaling our AI infrastructure, offset in part by efficiency gains in Azure [MSFT_10-K_0000950170-25-100235_mda_004]. \n\nIn terms of Microsoft's Productivity and Business Processes segment, the filing reports that revenue increased by 12% in fiscal year 2025 with Office 365 Commercial cloud revenue growing 15% in the same fiscal year [MSFT_10-K_0000950170-25-100235_mda_002].",
+    "keyword_recall": 1.0,
+    "refused": false,
+    "expected_refusal": false,
+    "n_sources": 6,
+    "tickers_in_sources": [
+      "MSFT"
+    ],
+    "n_citations": 4,
+    "input_tokens": 4895,
+    "output_tokens": 306,
+    "answer_length": 1230,
+    "elapsed_sec": 61.72
+  }
+]

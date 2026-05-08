@@ -25,14 +25,23 @@ Latency: ~2 seconds. Cost per query: $0 (Groq free tier).
 
 ## Demo
 
-![Main view](docs/screenshots/01-main.png)
-*Asking an analyst question with sidebar filters; response generated in 2 seconds with chunk-level citations.*
+## Demo
 
-![Source detail](docs/screenshots/02-source-1.png)
-![Source detail](docs/screenshots/03-source-2.png)
-![Source detail](docs/screenshots/04-source-3.png)
-![Source detail](docs/screenshots/05-source-4.png)
-*Each citation expands to show the exact chunk used, similarity score, and chunk ID for verification.*
+![Agent mode with visible reasoning](docs/screenshots/01-agent-main.png)
+*Agent mode answering "How do Google and Microsoft frame cloud competition?". The planner decomposed the question into two per-company sub-queries before retrieving. Source coverage is balanced (GOOGL: 2 · MSFT: 2) — naive top-K retrieval typically returns 3-1 or 4-0 on this question.*
+
+![Source detail](docs/screenshots/02-source-googl-mda-1.png)
+*Every citation expands to show the exact chunk used, similarity score, and chunk ID for verification.*
+
+### What the agent does differently
+
+The agent uses a LangGraph state machine: **planner → retriever → synthesizer**.
+
+- **Planner** (Llama 3.3 70B with JSON-mode output): decomposes the user question into one or more `(question, ticker, section)` sub-queries.
+- **Retriever**: runs metadata-filtered semantic search per sub-query and dedups results by `chunk_id`.
+- **Synthesizer**: generates a single grounded answer from the accumulated context.
+
+This costs one extra LLM call (~500 tokens for the planner) but produces strictly better coverage on multi-entity queries. Single-shot mode is kept as the default for focused queries where the overhead isn't worth it.
 
 ---
 

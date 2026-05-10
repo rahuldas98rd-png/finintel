@@ -4,11 +4,15 @@
 
 FROM python:3.12-slim
 
-# Redirect ML model caches to /tmp (HF Spaces home dir is occasionally
-# read-only; /tmp is always writable for the runtime user).
-ENV HF_HOME=/tmp/huggingface \
-    TRANSFORMERS_CACHE=/tmp/huggingface \
-    SENTENCE_TRANSFORMERS_HOME=/tmp/huggingface \
+# Cache HF models inside the image at a persistent path. Do NOT use /tmp
+# on HF Spaces — /tmp is treated as ephemeral, so build-time downloads
+# disappear at container start and have to be re-fetched on first query.
+# That re-fetch (~440 MB for BGE) takes longer than HF's reverse proxy
+# tolerates on the SSE/WebSocket connection, which is what causes the
+# Streamlit page to go blank with no error.
+ENV HF_HOME=/app/.cache/huggingface \
+    TRANSFORMERS_CACHE=/app/.cache/huggingface \
+    SENTENCE_TRANSFORMERS_HOME=/app/.cache/huggingface \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
@@ -18,6 +22,13 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
  && pip install --no-cache-dir -r requirements.txt
+
+# Pre-download the BGE embedding model into the image. This bakes ~440 MB
+# of model weights into a layer so the first user query loads from disk
+# in <2s instead of triggering a download. Build time goes up by ~2 min
+# but every cold start after that is fast.
+RUN python -c "from sentence_transformers import SentenceTransformer; \
+    SentenceTransformer('BAAI/bge-base-en-v1.5')"
 
 # Copy the rest of the application code.
 COPY . .

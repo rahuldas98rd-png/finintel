@@ -1,3 +1,15 @@
+---
+title: FinIntel
+emoji: 📊
+colorFrom: blue
+colorTo: indigo
+sdk: streamlit
+sdk_version: "1.57.0"
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # FinIntel — Agentic RAG for SEC Filings
 
 > Analyst-grade question answering over SEC 10-K filings, with chunk-level citations and metadata-filtered retrieval. Built end-to-end in Python with uv, Qdrant, BGE embeddings, and Llama 3.3 70B.

@@ -1,7 +1,17 @@
-"""Qdrant vector store wrapper for chunk indexing and semantic search."""
+"""Qdrant vector store wrapper for chunk indexing and semantic search.
+
+Connection is configurable via environment variables so the same code path
+works against local Docker Qdrant (development) and Qdrant Cloud (HF Spaces
+deployment):
+
+    QDRANT_URL=http://localhost:6333         # local Docker (default)
+    QDRANT_URL=https://xxx.cloud.qdrant.io   # Qdrant Cloud
+    QDRANT_API_KEY=...                       # required for cloud, unset for local
+"""
 from __future__ import annotations
 
 import logging
+import os
 import uuid
 from collections.abc import Sequence
 
@@ -29,13 +39,23 @@ class VectorStore:
 
     def __init__(
         self,
-        url: str = DEFAULT_QDRANT_URL,
+        url: str | None = None,
+        api_key: str | None = None,
         collection: str = DEFAULT_COLLECTION,
         vector_dim: int = 768,
     ) -> None:
-        self.client = QdrantClient(url=url)
+        # Env vars take precedence over hardcoded defaults; explicit constructor
+        # args override env vars (useful for tests and the migration script).
+        url = url or os.getenv("QDRANT_URL", DEFAULT_QDRANT_URL)
+        api_key = api_key or os.getenv("QDRANT_API_KEY")  # None for local
+
+        self.client = QdrantClient(url=url, api_key=api_key)
         self.collection = collection
         self.vector_dim = vector_dim
+        self._url = url  # store for diagnostic logging
+
+        scheme = "cloud" if api_key else "local"
+        logger.info("VectorStore connected to %s Qdrant at %s", scheme, url)
 
     def reset_collection(self) -> None:
         """Delete and recreate the collection. Used when re-indexing from scratch."""
